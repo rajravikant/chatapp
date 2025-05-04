@@ -821,11 +821,8 @@ export default Page;
 
 const landingPageData = {
   techCompanyLogos : [
-    "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",     
     "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",     
-    "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",         
     "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",            
-    "https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg",          
     "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Samsung_Black_icon.svg/500px-Samsung_Black_icon.svg.png",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/FoxconnLogo-special.svg/375px-FoxconnLogo-special.svg.png",      
@@ -1452,7 +1449,7 @@ function Testimonials() {
         >
           <h2 className="md:text-4xl text-xl xl:text-2xl font-semibold mb-4 text-gray-700">What Our Users Say</h2>
           <p className=" text-gray-500 max-w-2xl mx-auto">
-            Join thousands of satisfied users who've improved their communication with ChatFlow
+            Join thousands of satisfied users who &apos; ve improved their communication with ChatFlow
           </p>
         </motion.div>
         
@@ -1984,7 +1981,7 @@ const ChatPage: React.FC<{setView : ()=>void}> = ({setView}) => {
         return msg;
       });
       
-      // @ts-ignore
+      // @ts-expect-error
       setConversations({
         ...conversations,
         [userId]: updatedConversation
@@ -2013,7 +2010,7 @@ const ChatPage: React.FC<{setView : ()=>void}> = ({setView}) => {
     
     // Simulate message delivery after a short delay
     setTimeout(() => {
-      // @ts-ignore
+      // @ts-expect-error
       setConversations((prev) => {
         const updatedMessages = prev[selectedUserId].map(msg => {
           if (msg.id === newMessage.id) {
@@ -2030,7 +2027,7 @@ const ChatPage: React.FC<{setView : ()=>void}> = ({setView}) => {
       
       // Simulate message read after another delay
       setTimeout(() => {
-        // @ts-ignore
+        // @ts-expect-error
         setConversations(prev => {
           const updatedMessages = prev[selectedUserId].map(msg => {
             if (msg.id === newMessage.id) {
@@ -3572,10 +3569,9 @@ function MediaTab({ medias }:{medias : Partial<User['recentMedias']>}) {
     return (
     <div className="grid lg:grid-cols-3 gap-5" >
       {medias.map((md,index) => (
-            <picture>
+            <picture key={index}>
             <img 
             src={md?.media} 
-            key={index}
             alt="Activity" 
             className="size-48 rounded-md object-cover" 
             />
