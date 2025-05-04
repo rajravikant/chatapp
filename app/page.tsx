@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState,useRef,ReactNode } from 'react';     
-import { AnimatePresence,motion,useAnimation,useInView , useScroll,useMotionValueEvent } from 'motion/react';    
+import { AnimatePresence,motion,useAnimation,useInView } from 'motion/react';    
 import { v4 as uuidv4 } from 'uuid';            
 import { 
-  CircleChevronLeft, 
+  CircleChevronLeft,  
   Search,
   X, 
   Mail, 
@@ -19,7 +19,6 @@ import {
   MessageSquare, 
   Users, 
   ArrowRight, 
-  CreditCard
 } from 'lucide-react';  
 
 const pageTransition = {
@@ -1116,7 +1115,7 @@ const ChatAppLanding: React.FC<{ setView: () => void }> = ({setView}) => {
                     </div>
                     <div className="flex justify-end">
                       <div className="bg-indigo-100 p-3 rounded-lg rounded-tr-none max-w-xs">
-                        <p className="text-indigo-800 text-sm">Yes! The UI is amazing and it's so fast!</p>
+                        <p className="text-indigo-800 text-sm">Yes! The UI is amazing and its so fast!</p>
                       </div>
                     </div>
                   </div>
@@ -1237,7 +1236,11 @@ function TrustedBySection() {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               <div className="w-full h-full flex items-center justify-center">
+                <picture>
                 <img src={company} className='h-full w-full object-contain' alt={company.slice(100,10)} />
+                </picture>
+
+
               </div>
             </motion.div>
           ))}
@@ -1268,7 +1271,9 @@ function TrustedBySection() {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               <div className="w-full h-full flex items-center justify-center">
-                  <img src={company} className='h-full w-full object-contain' alt='company-logo' />
+                <picture>
+                    <img src={company} className='h-full w-full object-contain' alt='company-logo' />
+                </picture>
               </div>
             </motion.div>
           ))}
@@ -1406,7 +1411,7 @@ function CTASection2() {
             </div>
             <div className="mb-4">
               <div className="bg-gray-100 p-3 rounded-lg max-w-xs">
-                <p className="text-gray-700">Here's a summary of your meeting:</p>
+                <p className="text-gray-700">Here &apos; is a summary of your meeting</p>
                 <ul className="text-gray-600 text-sm mt-2 list-disc list-inside">
                   <li>Project deadline moved to Friday</li>
                   <li>Budget approved for new tools</li>
@@ -1469,7 +1474,10 @@ function Testimonials() {
               </div>
               <p className="text-gray-700 mb-6 italic">{testimonial.content}</p>
               <div className="flex items-center">
+                <picture>
                 <img src={testimonial.avatar} alt={testimonial.author} className="w-12 h-12 rounded-full" />
+
+                </picture>
                 <div className="ml-4">
                   <h4 className="font-medium text-sm">{testimonial.author}</h4>
                   <p className="text-gray-500 text-xs">{testimonial.role}</p>
@@ -2273,7 +2281,7 @@ const UsersList: React.FC<UsersListProps> = ({
   const [filteredUsers, setFilteredUsers] = useState<User[]>();
 
   useEffect(()=>{
-    let filteredUsers = filter === 'all' 
+    const filteredUsers = filter === 'all' 
     ? users
     : users.filter(user => user.status === 'online');
     setFilteredUsers(filteredUsers);
@@ -3206,7 +3214,9 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                               <div className="flex items-center">
                                 <div className="h-8 w-8 bg-gray-200 rounded-full overflow-hidden mr-2">
                                   {user.avatar && (
+                                    <picture>
                                     <img src={user.avatar} alt={user.name} className="h-full w-full object-cover" />
+                                    </picture>
                                   )}
                                 </div>
                                 <span className="text-sm text-gray-700 font-medium">{user.name}</span>
@@ -3348,11 +3358,13 @@ function UserProfileModal({ isOpen, onClose, userData : user }: UserProfileModal
             
             {/* Cover photo */}
             <div className="h-48 relative bg-gradient-to-r from-blue-400 to-indigo-500">
+              <picture>
               <img 
                 src={user.coverPhoto || "https://randomuser.me/api/portraits/thumb/men/75.jpg"} 
                 alt="Cover" 
                 className="w-full h-full object-cover" 
               />
+              </picture>
               <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white to-transparent opacity-100"></div>
             </div>
             
@@ -3560,12 +3572,14 @@ function MediaTab({ medias }:{medias : Partial<User['recentMedias']>}) {
     return (
     <div className="grid lg:grid-cols-3 gap-5" >
       {medias.map((md,index) => (
+            <picture>
             <img 
             src={md?.media} 
             key={index}
             alt="Activity" 
             className="size-48 rounded-md object-cover" 
             />
+            </picture>
       ))}
     </div>
   );
@@ -3729,11 +3743,13 @@ const Avatar: React.FC<AvatarProps> = ({
 
   return (
     <div className={`relative inline-block ${className}`}>
-      <img
-        src={src}
-        alt={alt}
-        className={`${sizeClasses[size]} rounded-full object-cover border-2 border-white shadow-sm`}
-      />
+      <picture>
+        <img
+          src={src}
+          alt={alt}
+          className={`${sizeClasses[size]} rounded-full object-cover border-2 border-white shadow-sm`}
+        />
+      </picture>
       {status && (
         <span 
           className={`absolute bottom-0 right-0 block rounded-full ${statusColors[status]} ring-2 ring-white`}
