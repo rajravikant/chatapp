@@ -3668,7 +3668,8 @@ const Footer: React.FC = () => {
 };
 
 // Animated Background Component
-export const AnimatedBackground = ({numbers = 8}: {numbers?: number})=>{
+
+const AnimatedBackground = ({numbers = 8}: {numbers?: number})=>{
   // const {height,width} = useWindowSize()
   
   return (
